@@ -1,4 +1,11 @@
-import exceptions
+try:
+    import exceptions
+except ImportError:
+    import builtins as exceptions
+
+exceptions_list = sorted(n for n, e in vars(exceptions).items()
+                         if isinstance(e, type) and
+                            issubclass(e, BaseException))
 
 from segment_detector import SegmentDetector
 from ellipse_candidate_maker import EllipseCandidateMaker
